@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos Mr. Peanut</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #d35400; } /* Color maní/tostado */
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;}
+        button { width: 100%; padding: 15px; background-color: #27ae60; color: white; border: none; margin-top: 20px; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #219150; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🥜 Mr. Peanut - Pedidos</h1>
+    <form id="orderForm">
+        
+        <label for="cliente">Nombre del Cliente</label>
+        <input type="text" id="cliente" placeholder="Tu nombre completo" required>
+
+        <label for="producto">Producto</label>
+        <select id="producto" required>
+            <option value="">Selecciona una opción...</option>
+            <option value="Mani Salado 100g">Maní Salado 100g</option>
+            <option value="Mani Dulce 100g">Maní Dulce 100g</option>
+            <option value="Mix de Frutos Secos">Mix de Frutos Secos</option>
+        </select>
+
+        <label for="cantidad">Cantidad</label>
+        <input type="number" id="cantidad" value="1" min="1" required>
+
+        <label for="direccion">Dirección de Entrega</label>
+        <input type="text" id="direccion" placeholder="Calle, Barrio, Ciudad" required>
+
+        <button type="submit">Realizar Pedido</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Capturar datos
+        const cliente = document.getElementById('cliente').value;
+        const producto = document.getElementById('producto').value;
+        const cantidad = document.getElementById('cantidad').value;
+        const direccion = document.getElementById('direccion').value;
+
+        // Aquí puedes conectar con una base de datos o enviar a WhatsApp
+        alert(`¡Gracias ${cliente}! Hemos recibido tu pedido de ${cantidad} x ${producto}.`);
+        
+        // Limpiar formulario
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
