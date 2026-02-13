@@ -12,26 +12,24 @@
             margin: 0 auto; 
             padding: 20px; 
             background-color: #f0e6d2; /* Fondo Kraft */
-            color: #2c2c2c; /* Color Tinta Negra/Café oscuro */
+            color: #2c2c2c; /* Color Tinta Negra */
         }
 
         .container { 
-            background: #fffdf5; /* Papel claro */
+            background: #fffdf5; 
             padding: 25px; 
-            border: 2px solid #2c2c2c; /* Marco tipo sello */
-            box-shadow: 5px 5px 0px rgba(44, 44, 44, 0.1); /* Sombra dura rústica */
+            border: 2px solid #2c2c2c; 
+            box-shadow: 5px 5px 0px rgba(44, 44, 44, 0.1); 
         }
 
         /* Cabecera y Logo */
         .logo-area { text-align: center; margin-bottom: 25px; }
         
-        /* ESTILO PARA EL LOGO TIPO SELLO */
         .logo-img {
-            width: 180px; /* Ajusta este tamaño si lo ves muy grande o pequeño */
+            width: 180px; 
             height: auto;
             display: block;
-            margin: 0 auto 15px auto; /* Centrado */
-            /* El truco para que parezca sellado en el papel (ideal si tiene fondo blanco) */
+            margin: 0 auto 15px auto; 
             mix-blend-mode: multiply; 
         }
 
@@ -39,11 +37,11 @@
             text-align: center; 
             text-transform: uppercase; 
             letter-spacing: 3px; 
-            border-bottom: 3px solid #2c2c2c; /* Línea gruesa */
+            border-bottom: 3px solid #2c2c2c; 
             padding-bottom: 15px;
             margin: 0;
             font-size: 2em;
-            font-weight: 900; /* Letra muy gruesa tipo sello */
+            font-weight: 900; 
         }
         
         .brand-tagline {
@@ -74,7 +72,7 @@
             padding: 12px; 
             margin-top: 8px; 
             border: 2px solid #2c2c2c; 
-            border-radius: 0; /* Bordes rectos rústicos */
+            border-radius: 0; 
             box-sizing: border-box; 
             font-size: 16px; 
             background-color: #fffdf5;
@@ -111,25 +109,48 @@
         td { padding: 12px; border-bottom: 2px solid #eee; font-size: 0.95em; vertical-align: middle; font-weight: bold;}
         .total-row { font-weight: 900; background-color: #f0e6d2; color: #2c2c2c; border-top: 3px solid #2c2c2c; font-size: 1.1em; }
         .delete-btn { color: #c0392b; cursor: pointer; font-weight: 900; text-align: center; font-size: 1.3em;}
-        .delete-btn:hover { color: #e74c3c; }
 
-        /* ETIQUETAS DE COLORES (BADGES) */
-        .tag {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 0px; /* Etiquetas cuadradas */
-            color: white;
-            font-size: 0.75em;
-            margin-right: 8px;
-            text-transform: uppercase;
-            font-weight: 900;
-            border: 2px solid #2c2c2c; /* Borde negro en las etiquetas */
-            box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        /* Etiquetas */
+        .tag { display: inline-block; padding: 4px 8px; color: white; font-size: 0.75em; margin-right: 8px; text-transform: uppercase; font-weight: 900; border: 2px solid #2c2c2c; box-shadow: 2px 2px 0px rgba(0,0,0,0.2); }
+        .tag-blue { background-color: #2980b9; } 
+        .tag-wine { background-color: #800020; } 
+        .tag-green { background-color: #27ae60; } 
+        .tag-default { background-color: #7f8c8d; }
+
+        /* --- PIE DE PÁGINA INSTAGRAM --- */
+        .footer-social {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px dashed #2c2c2c; /* Línea de corte */
+            text-align: center;
         }
-        .tag-blue { background-color: #2980b9; } /* Azul Maní Salado */
-        .tag-wine { background-color: #800020; } /* Vinotinto Maní Dulce */
-        .tag-green { background-color: #27ae60; } /* Verde Mix */
-        .tag-default { background-color: #7f8c8d; } /* Color por defecto */
+        .social-title {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .social-desc {
+            font-size: 0.9em;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .btn-insta {
+            display: inline-block;
+            text-decoration: none;
+            color: #2c2c2c;
+            border: 2px solid #2c2c2c;
+            padding: 12px 25px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .btn-insta:hover {
+            background-color: #2c2c2c;
+            color: #f0e6d2;
+        }
 
     </style>
 </head>
@@ -140,25 +161,20 @@
     <div class="logo-area">
         <img src="logo.png" class="logo-img" alt="Logo Mr Peanut">
         <h1>Mr. Peanut</h1>
-        <div class="brand-tagline">El snack que tu cuerpo reconoce y agradece.</div>
+        <div class="brand-tagline">Calidad Artesanal</div>
     </div>
     
     <div class="section-title">1. Tus Datos</div>
-    
     <label>Nombre del Cliente / Negocio</label>
     <input type="text" id="cliente" placeholder="Ej: Tienda La Esquina">
-    
     <label>Persona de Contacto</label>
     <input type="text" id="contacto" placeholder="Ej: Juan Pérez">
-    
     <label>Teléfono / WhatsApp</label>
     <input type="tel" id="telefono" placeholder="Ej: 300 123 4567">
-    
     <label>Dirección de Entrega</label>
     <input type="text" id="direccion" placeholder="Dirección completa">
 
     <div class="section-title">2. Arma tu pedido</div>
-    
     <label>Producto</label>
     <select id="producto">
         <option value="">Cargando menú...</option>
@@ -189,7 +205,7 @@
             <tbody id="cart-body"></tbody>
             <tfoot>
                 <tr class="total-row">
-                    <td colspan="2">TOTAL A PAGAR:</td>
+                    <td colspan="2">TOTAL:</td>
                     <td id="grand-total">$0</td>
                     <td></td>
                 </tr>
@@ -198,18 +214,29 @@
     </div>
 
     <button class="btn-send" id="btnEnviar" onclick="enviarPedido()" disabled>FINALIZAR PEDIDO</button>
+
+    <div class="footer-social">
+        <div class="social-title">📸 Únete a nuestra comunidad</div>
+        <div class="social-desc">
+            Conoce nuestro proceso artesanal, descubre los beneficios del maní y entérate antes que nadie de los <strong>NUEVOS LANZAMIENTOS</strong>.
+        </div>
+        
+        <a href="https://www.instagram.com/mrpeanut1_" target="_blank" class="btn-insta">
+            Síguenos en Instagram
+        </a>
+    </div>
+
 </div>
 
 <script>
     // ----------------------------------------------------
-    // CONEXIÓN CON GOOGLE SHEETS (Tu URL)
+    // CONEXIÓN CON GOOGLE SHEETS
     // ----------------------------------------------------
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLyAAHFE7zQLIAOfvVcX54gWR7nk900i4BI39esZJ-VZ2cTuEWxRnL-57c4807a3D3pA/exec"; 
 
     let catalogoPrecios = {};
     let carrito = [];
 
-    // Cargar menú al iniciar
     window.onload = function() {
         fetch(SCRIPT_URL)
         .then(response => response.json())
@@ -224,13 +251,9 @@
                 select.add(option);
             });
         })
-        .catch(error => {
-            console.error('Error cargando menú:', error);
-            document.getElementById('producto').innerHTML = '<option>Error cargando menú (Recarga la página)</option>';
-        });
+        .catch(error => { console.error('Error:', error); document.getElementById('producto').innerHTML = '<option>Error cargando menú</option>'; });
     };
 
-    // Actualizar precio visual en tiempo real
     function actualizarPrecioUnitario() {
         const nombre = document.getElementById('producto').value;
         const cant = document.getElementById('cantidad').value;
@@ -240,7 +263,6 @@
     document.getElementById('producto').addEventListener('change', actualizarPrecioUnitario);
     document.getElementById('cantidad').addEventListener('input', actualizarPrecioUnitario);
 
-    // AGREGAR AL CARRITO
     function agregarAlCarrito() {
         const nombre = document.getElementById('producto').value;
         const cantidad = parseInt(document.getElementById('cantidad').value);
@@ -249,27 +271,17 @@
             alert("Por favor selecciona un producto y una cantidad válida.");
             return;
         }
-
         const precioUnit = catalogoPrecios[nombre];
         const precioTotal = precioUnit * cantidad;
 
-        // Añadir al array del carrito
-        carrito.push({
-            producto: nombre,
-            cantidad: cantidad,
-            precioUnitario: precioUnit,
-            precioTotal: precioTotal
-        });
-
+        carrito.push({ producto: nombre, cantidad: cantidad, precioUnitario: precioUnit, precioTotal: precioTotal });
         actualizarTablaCarrito();
         
-        // Resetear campos de producto para seguir agregando
         document.getElementById('producto').value = "";
         document.getElementById('cantidad').value = 1;
         document.getElementById('priceDisplay').innerText = "$0";
     }
 
-    // DIBUJAR TABLA (Con lógica de colores de marca)
     function actualizarTablaCarrito() {
         const tbody = document.getElementById('cart-body');
         tbody.innerHTML = "";
@@ -277,19 +289,12 @@
 
         carrito.forEach((item, index) => {
             granTotal += item.precioTotal;
-
-            // --- LÓGICA DE ETIQUETAS DE COLOR ---
-            let badge = '<span class="tag tag-default">PRODUCTO</span>'; // Por defecto
+            let badge = '<span class="tag tag-default">PRODUCTO</span>';
             let nombreLower = item.producto.toLowerCase();
 
-            if(nombreLower.includes("salado")) {
-                badge = '<span class="tag tag-blue">SALADO</span>';
-            } else if(nombreLower.includes("dulce")) {
-                badge = '<span class="tag tag-wine">DULCE</span>';
-            } else if(nombreLower.includes("mix") || nombreLower.includes("mixto")) {
-                badge = '<span class="tag tag-green">MIX</span>';
-            }
-            // ------------------------------------
+            if(nombreLower.includes("salado")) { badge = '<span class="tag tag-blue">SALADO</span>'; } 
+            else if(nombreLower.includes("dulce")) { badge = '<span class="tag tag-wine">DULCE</span>'; } 
+            else if(nombreLower.includes("mix") || nombreLower.includes("mixto")) { badge = '<span class="tag tag-green">MIX</span>'; }
 
             let row = `<tr>
                 <td>${badge} ${item.producto}</td>
@@ -301,8 +306,6 @@
         });
 
         document.getElementById('grand-total').innerText = `$${granTotal.toLocaleString()}`;
-        
-        // Mostrar u ocultar tabla y botón enviar
         const container = document.getElementById('cart-container');
         const btnEnviar = document.getElementById('btnEnviar');
         
@@ -317,15 +320,12 @@
         }
     }
 
-    // ELIMINAR ITEM
     function eliminarItem(index) {
         carrito.splice(index, 1);
         actualizarTablaCarrito();
     }
 
-    // ENVIAR TODO A GOOGLE SHEETS
     function enviarPedido() {
-        // Validar datos cliente
         const cliente = document.getElementById('cliente').value.trim();
         const telefono = document.getElementById('telefono').value.trim();
         const direccion = document.getElementById('direccion').value.trim();
@@ -341,39 +341,27 @@
         btn.innerText = "ENVIANDO PEDIDO...";
         btn.disabled = true;
 
-        const ordenCompleta = {
-            cliente: cliente,
-            telefono: telefono,
-            direccion: direccion,
-            contacto: contacto,
-            carrito: carrito
-        };
+        const ordenCompleta = { cliente: cliente, telefono: telefono, direccion: direccion, contacto: contacto, carrito: carrito };
 
-        fetch(SCRIPT_URL, {
-            method: "POST",
-            body: JSON.stringify(ordenCompleta)
-        })
+        fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify(ordenCompleta) })
         .then(response => response.json())
         .then(data => {
             if(data.result === "Exito"){
-                alert("✅ ¡PEDIDO CONFIRMADO!\n\nGracias por elegir Mr. Peanut. Pronto lo estaremos preparando.");
-                carrito = []; // Limpiar carrito
+                alert("✅ ¡PEDIDO CONFIRMADO!\n\nGracias por elegir Mr. Peanut. Pronto te contactaremos.");
+                carrito = []; 
                 actualizarTablaCarrito();
-                // Limpiar formulario
                 document.getElementById('cliente').value = "";
                 document.getElementById('telefono').value = "";
                 document.getElementById('direccion').value = "";
                 document.getElementById('contacto').value = "";
-                window.scrollTo(0, 0); // Subir al inicio
-            } else {
-                alert("❌ Error en el servidor: " + data.error);
-            }
+                window.scrollTo(0, 0); 
+            } else { alert("❌ Error: " + data.error); }
             btn.innerHTML = textoOriginal;
             btn.disabled = false;
         })
         .catch(error => {
             console.error('Error:', error);
-            alert("❌ Error de conexión.\nPor favor revisa tu internet e intenta nuevamente.");
+            alert("❌ Error de conexión. Intenta nuevamente.");
             btn.innerHTML = textoOriginal;
             btn.disabled = false;
         });
