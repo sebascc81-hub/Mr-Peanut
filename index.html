@@ -230,9 +230,9 @@
 
 <script>
     // ----------------------------------------------------
-    // CONEXIÓN CON GOOGLE SHEETS
+    // CONEXIÓN CON TU NUEVA URL (ACTUALIZADA)
     // ----------------------------------------------------
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLyAAHFE7zQLIAOfvVcX54gWR7nk900i4BI39esZJ-VZ2cTuEWxRnL-57c4807a3D3pA/exec"; 
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzvKd3WVYuOTwHG3jbODPc69hn6tNNJwji4Rxgvc4W_n-1Mffwwta0VteyW_4W5vjFuzg/exec"; 
 
     let catalogoPrecios = {};
     let carrito = [];
@@ -347,7 +347,7 @@
         .then(response => response.json())
         .then(data => {
             if(data.result === "Exito"){
-                alert("✅ ¡PEDIDO CONFIRMADO!\n\nGracias por elegir Mr. Peanut. Pronto te contactaremos.");
+                alert("✅ ¡PEDIDO CONFIRMADO!\n\nGracias por elegir Mr. Peanut. El pedido ha sido enviado y recibirás confirmación interna.");
                 carrito = []; 
                 actualizarTablaCarrito();
                 document.getElementById('cliente').value = "";
