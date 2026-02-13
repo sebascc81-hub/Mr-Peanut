@@ -5,58 +5,255 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos Mr. Peanut</title>
     <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; }
-        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #d35400; } /* Color maní/tostado */
-        label { display: block; margin-top: 15px; font-weight: bold; }
-        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;}
-        button { width: 100%; padding: 15px; background-color: #27ae60; color: white; border: none; margin-top: 20px; border-radius: 4px; font-size: 16px; cursor: pointer; }
-        button:hover { background-color: #219150; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa; }
+        .container { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #d35400; margin-bottom: 20px; }
+        
+        .section-title { color: #555; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 25px; margin-bottom: 15px; font-weight: bold;}
+
+        label { display: block; margin-top: 10px; font-weight: 600; color: #444; font-size: 0.9em; }
+        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px;}
+        
+        /* Botones */
+        button { width: 100%; padding: 14px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; transition: background 0.3s; }
+        .btn-add { background-color: #e67e22; color: white; margin-top: 15px; }
+        .btn-add:hover { background-color: #d35400; }
+        .btn-send { background-color: #27ae60; color: white; margin-top: 25px; }
+        .btn-send:hover { background-color: #219150; }
+        .btn-send:disabled { background-color: #95a5a6; cursor: not-allowed; }
+
+        /* Estilos del Carrito */
+        #cart-container { margin-top: 20px; border: 1px solid #eee; border-radius: 6px; overflow: hidden; display: none; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background-color: #f1f1f1; text-align: left; padding: 10px; font-size: 0.85em; color: #666; }
+        td { padding: 10px; border-bottom: 1px solid #eee; font-size: 0.9em; }
+        .total-row { font-weight: bold; background-color: #fff8e1; color: #d35400; }
+        .delete-btn { color: red; cursor: pointer; font-weight: bold; text-align: center;}
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🥜 Mr. Peanut - Pedidos</h1>
-    <form id="orderForm">
-        
-        <label for="cliente">Nombre del Cliente</label>
-        <input type="text" id="cliente" placeholder="Tu nombre completo" required>
+    <h1>🥜 Pedidos Mr. Peanut</h1>
+    
+    <div class="section-title">1. Tus Datos</div>
+    <label>Nombre del Cliente / Negocio</label>
+    <input type="text" id="cliente" placeholder="Ej: Tienda La Esquina">
+    
+    <label>Persona de Contacto</label>
+    <input type="text" id="contacto" placeholder="Ej: Juan Pérez">
+    
+    <label>Teléfono / WhatsApp</label>
+    <input type="tel" id="telefono" placeholder="Ej: 300 123 4567">
+    
+    <label>Dirección de Entrega</label>
+    <input type="text" id="direccion" placeholder="Dirección completa">
 
-        <label for="producto">Producto</label>
-        <select id="producto" required>
-            <option value="">Selecciona una opción...</option>
-            <option value="Mani Salado 100g">Maní Salado 100g</option>
-            <option value="Mani Dulce 100g">Maní Dulce 100g</option>
-            <option value="Mix de Frutos Secos">Mix de Frutos Secos</option>
-        </select>
+    <div class="section-title">2. Arma tu pedido</div>
+    <label>Producto</label>
+    <select id="producto">
+        <option value="">Cargando menú...</option>
+    </select>
 
-        <label for="cantidad">Cantidad</label>
-        <input type="number" id="cantidad" value="1" min="1" required>
+    <div style="display: flex; gap: 10px;">
+        <div style="flex: 1;">
+            <label>Cantidad</label>
+            <input type="number" id="cantidad" value="1" min="1">
+        </div>
+        <div style="flex: 1; display: flex; align-items: flex-end;">
+            <div id="priceDisplay" style="font-weight: bold; color: #d35400; margin-bottom: 12px; width: 100%; text-align: right;">$0</div>
+        </div>
+    </div>
 
-        <label for="direccion">Dirección de Entrega</label>
-        <input type="text" id="direccion" placeholder="Calle, Barrio, Ciudad" required>
+    <button class="btn-add" onclick="agregarAlCarrito()">+ Agregar al Carrito</button>
 
-        <button type="submit">Realizar Pedido</button>
-    </form>
+    <div id="cart-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Prod.</th>
+                    <th>Cant.</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="cart-body"></tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="2">TOTAL:</td>
+                    <td id="grand-total">$0</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <button class="btn-send" id="btnEnviar" onclick="enviarPedido()" disabled>Finalizar Pedido</button>
 </div>
 
 <script>
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Capturar datos
-        const cliente = document.getElementById('cliente').value;
-        const producto = document.getElementById('producto').value;
-        const cantidad = document.getElementById('cantidad').value;
-        const direccion = document.getElementById('direccion').value;
+    // ----------------------------------------------------
+    // TU URL YA ESTÁ CONFIGURADA AQUÍ:
+    // ----------------------------------------------------
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLyAAHFE7zQLIAOfvVcX54gWR7nk900i4BI39esZJ-VZ2cTuEWxRnL-57c4807a3D3pA/exec"; 
 
-        // Aquí puedes conectar con una base de datos o enviar a WhatsApp
-        alert(`¡Gracias ${cliente}! Hemos recibido tu pedido de ${cantidad} x ${producto}.`);
+    let catalogoPrecios = {};
+    let carrito = [];
+
+    // Cargar menú
+    window.onload = function() {
+        fetch(SCRIPT_URL)
+        .then(response => response.json())
+        .then(productos => {
+            const select = document.getElementById('producto');
+            select.innerHTML = '<option value="">Selecciona un producto...</option>';
+            productos.forEach(p => {
+                let option = document.createElement('option');
+                option.value = p.nombre;
+                option.text = `${p.nombre} - $${p.precio.toLocaleString()}`; 
+                catalogoPrecios[p.nombre] = p.precio;
+                select.add(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error cargando menú:', error);
+            document.getElementById('producto').innerHTML = '<option>Error cargando menú</option>';
+        });
+    };
+
+    // Actualizar precio visual
+    function actualizarPrecioUnitario() {
+        const nombre = document.getElementById('producto').value;
+        const cant = document.getElementById('cantidad').value;
+        const precio = catalogoPrecios[nombre] || 0;
+        document.getElementById('priceDisplay').innerText = `$${(precio * cant).toLocaleString()}`;
+    }
+    document.getElementById('producto').addEventListener('change', actualizarPrecioUnitario);
+    document.getElementById('cantidad').addEventListener('input', actualizarPrecioUnitario);
+
+    // AGREGAR AL CARRITO
+    function agregarAlCarrito() {
+        const nombre = document.getElementById('producto').value;
+        const cantidad = parseInt(document.getElementById('cantidad').value);
+
+        if (!nombre || cantidad < 1) {
+            alert("Por favor selecciona un producto y una cantidad válida.");
+            return;
+        }
+
+        const precioUnit = catalogoPrecios[nombre];
+        const precioTotal = precioUnit * cantidad;
+
+        // Añadir al array
+        carrito.push({
+            producto: nombre,
+            cantidad: cantidad,
+            precioUnitario: precioUnit,
+            precioTotal: precioTotal
+        });
+
+        actualizarTablaCarrito();
         
-        // Limpiar formulario
-        this.reset();
-    });
+        // Resetear campos de producto
+        document.getElementById('producto').value = "";
+        document.getElementById('cantidad').value = 1;
+        document.getElementById('priceDisplay').innerText = "$0";
+    }
+
+    // DIBUJAR TABLA
+    function actualizarTablaCarrito() {
+        const tbody = document.getElementById('cart-body');
+        tbody.innerHTML = "";
+        let granTotal = 0;
+
+        carrito.forEach((item, index) => {
+            granTotal += item.precioTotal;
+            let row = `<tr>
+                <td>${item.producto}</td>
+                <td>${item.cantidad}</td>
+                <td>$${item.precioTotal.toLocaleString()}</td>
+                <td class="delete-btn" onclick="eliminarItem(${index})">X</td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+
+        document.getElementById('grand-total').innerText = `$${granTotal.toLocaleString()}`;
+        
+        // Mostrar u ocultar tabla y botón enviar
+        const container = document.getElementById('cart-container');
+        const btnEnviar = document.getElementById('btnEnviar');
+        
+        if (carrito.length > 0) {
+            container.style.display = "block";
+            btnEnviar.disabled = false;
+            btnEnviar.innerText = `Finalizar Pedido ($${granTotal.toLocaleString()})`;
+        } else {
+            container.style.display = "none";
+            btnEnviar.disabled = true;
+            btnEnviar.innerText = "Finalizar Pedido";
+        }
+    }
+
+    // ELIMINAR ITEM
+    function eliminarItem(index) {
+        carrito.splice(index, 1);
+        actualizarTablaCarrito();
+    }
+
+    // ENVIAR TODO
+    function enviarPedido() {
+        // Validar datos cliente
+        const cliente = document.getElementById('cliente').value;
+        const telefono = document.getElementById('telefono').value;
+        const direccion = document.getElementById('direccion').value;
+        const contacto = document.getElementById('contacto').value;
+
+        if (!cliente || !telefono || !direccion) {
+            alert("Por favor completa tus datos (Nombre, Teléfono y Dirección) antes de enviar.");
+            return;
+        }
+
+        const btn = document.getElementById('btnEnviar');
+        const textoOriginal = btn.innerText;
+        btn.innerText = "Enviando pedido...";
+        btn.disabled = true;
+
+        const ordenCompleta = {
+            cliente: cliente,
+            telefono: telefono,
+            direccion: direccion,
+            contacto: contacto,
+            carrito: carrito
+        };
+
+        fetch(SCRIPT_URL, {
+            method: "POST",
+            body: JSON.stringify(ordenCompleta)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.result === "Exito"){
+                alert("¡Pedido recibido con éxito! Muchas gracias.");
+                carrito = []; // Limpiar carrito
+                actualizarTablaCarrito();
+                // Limpiar formulario
+                document.getElementById('cliente').value = "";
+                document.getElementById('telefono').value = "";
+                document.getElementById('direccion').value = "";
+                document.getElementById('contacto').value = "";
+            } else {
+                alert("Hubo un error en el servidor: " + data.error);
+            }
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Hubo un error al conectar. Revisa tu conexión.");
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
+        });
+    }
 </script>
 
 </body>
